@@ -1,5 +1,5 @@
 var bgi,Sleepi,Movei,Brushi,Gymi,Drinki,Eati
-
+var edges
 function preload(){
   bgi= loadImage("iss.png");
   Sleepi= loadAnimation("sleep.png");
@@ -17,7 +17,7 @@ function setup() {
   astronaut= createSprite(400, 270, 50, 50);
  astronaut.addAnimation("sleeping", Sleepi);
  astronaut.scale=0.1
-  
+  edges=createEdgeSprites()
 }
 
 
@@ -32,8 +32,8 @@ function draw() {
  text("Down Arrow = Running",100,130)
  text("Left Arrow = Eating",100,160)
  text("Right Arrow = Drinking",100,190)
- text("m key = Moving")
-
+ text("m key = go home",100,310)
+astronaut.collide(edges)
  if(keyDown(UP_ARROW)){
    astronaut.addAnimation("Brushing", Brushi)
    astronaut.changeAnimation("Brushing")
@@ -59,10 +59,10 @@ function draw() {
   astronaut.velocityY=0
  }
  if(keyDown("M")){
-  astronaut.addAnimation("moveing", Movei)
-  astronaut.changeAnimation("moveing")
-  astronaut.velocityX=11
-  astronaut.velocityY=11
+  astronaut.addAnimation("moveing", Movei);
+  astronaut.changeAnimation("moveing");
+  astronaut.velocityX=0
+  astronaut.velocityY=0
  }
 
 }
